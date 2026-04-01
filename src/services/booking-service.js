@@ -8,22 +8,18 @@ const { StatusCodes } = require('http-status-codes');
 const { message } = require('../utils/common/error-response');
 
 async function createBooking(data) {
-    try {
+    return new Promise((resolve, reject) => {
         const result = db.sequelize.transaction(async function bookingImp(t) {
             const flight = await axios.get(`${ServerConfig.FLIGHT_SERVICE}/api/v1/flights/${data.flightId}`);
             const flightData = flight.data.data;
             if(data.noOfSeats > flightData.totalSeats) {
-                throw new AppError('not enought seats available', StatusCodes.BAD_REQUEST);
+                reject(new AppError('not enought seats available', StatusCodes.BAD_REQUEST));
             }
-            return true;
+            resolve(true);
         });
 
         return result;
-
-    } catch (error) {
-        console.log(error);
-        throw error;
-    }
+    });
 }
 
 module.exports = {
