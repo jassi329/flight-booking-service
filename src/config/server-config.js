@@ -4,5 +4,6 @@ const { PORT } = require('.');
 dotenv.config();
 
 module.exports = {
-    PORT: process.env.PORT
+    PORT: process.env.PORT,
+    FLIGHT_SERVICE: process.env.FLIGHT_SERVICE
 }
