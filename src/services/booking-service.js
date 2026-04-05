@@ -44,7 +44,8 @@ async function makePayment(data) {
         }
         const bookingTime = new Date(bookingDetails.createdAt);
         const currentTime = new Date();
-        if(currentTime - bookingTime > 30000) {
+
+        if(currentTime - bookingTime > 1800000) {
             await cancelBooking(data.bookingId);
             throw new AppError('the booking has expired', StatusCodes.BAD_REQUEST)
         } 
