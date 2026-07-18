@@ -7,6 +7,10 @@
     "test": "tst",
     "dev": "npx nodemon src/index.js"
   },
+  "scripts": {
+  "start": "node src/index.js",
+  "dev": "npx nodemon src/index.js"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jassi329/flight-booking-system.git"
